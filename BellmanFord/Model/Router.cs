@@ -47,6 +47,9 @@ namespace BellmanFord.Model
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void CheckCost(IRouter From, IRouter To, int AdvertisedCost)
         {
+            /*
+             * Todo: check null arguments
+             */
             if (LowerCost(To, AdvertisedCost))
             {
                 Link sourcelink = links.Single(link=>link.Target() == From);
@@ -79,6 +82,11 @@ namespace BellmanFord.Model
             table[Target] = new RoutingTableEntry(999, null);
         }
 
+        private void Initialize(Link Dest)
+        {
+            table[Dest.Target()] = new RoutingTableEntry(Dest.Cost(), Dest);
+        }
+
         private Boolean HasEntry(IRouter Target)
         {
             if (table.Keys.Contains(Target))
@@ -94,7 +102,7 @@ namespace BellmanFord.Model
         {
             foreach (var link in links)
             {
-                Initialize(link.Target());
+                Initialize(link);
             }
 
         }
