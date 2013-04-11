@@ -14,17 +14,18 @@ namespace BellmanFord.Model
 
         public RoutingTableEntry(int TotalCost, Link Destination)
         {
-            
             this.TotalCost = TotalCost;
-
-            
-                this.Destination = Destination;
-            
+            this.Destination = Destination;
         }
 
         public int Cost()
         {
             return TotalCost;
+        }
+
+        public IRouter Target()
+        {
+            return Destination == null ? null : Destination.Target();
         }
     }
 }

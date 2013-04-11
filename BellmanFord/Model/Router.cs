@@ -16,6 +16,7 @@ namespace BellmanFord.Model
         public Router()
         {
             links = new List<Link>();
+            table = new Dictionary<IRouter, RoutingTableEntry>();
         }
 
 
@@ -33,7 +34,14 @@ namespace BellmanFord.Model
 
         public void Interate()
         {
+            foreach (var link in links)
+            {
+                foreach(var entry in table)
+                {
 
+                    link.Target().CheckCost(this, entry.Value.Target(), entry.Value.Cost());
+                }
+            }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -41,7 +49,8 @@ namespace BellmanFord.Model
         {
             if (LowerCost(To, AdvertisedCost))
             {
-                table[To] = new RoutingTableEntry(AdvertisedCost, links.Single(link => link.Target() == To));
+                Link sourcelink = links.Single(link=>link.Target() == From);
+                table[To] = new RoutingTableEntry(AdvertisedCost + sourcelink.Cost(), sourcelink);
             }
             
         }
@@ -79,5 +88,15 @@ namespace BellmanFord.Model
             return false;
         }
 
+
+
+        public void InitializeAllLinks()
+        {
+            foreach (var link in links)
+            {
+                Initialize(link.Target());
+            }
+
+        }
     }
 }

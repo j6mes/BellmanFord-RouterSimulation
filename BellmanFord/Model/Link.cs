@@ -26,5 +26,10 @@ namespace BellmanFord.Model
         {
             return target;
         }
+
+        public int Cost()
+        {
+            return cost;
+        }
     }
 }

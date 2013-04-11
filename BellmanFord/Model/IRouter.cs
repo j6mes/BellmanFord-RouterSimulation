@@ -10,5 +10,7 @@ namespace BellmanFord.Model
         void Interate();
         void CheckCost(IRouter From, IRouter To, int Cost);
         void AddLink(Link Link);
+
+        void InitializeAllLinks();
     }
 }
