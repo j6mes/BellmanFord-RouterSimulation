@@ -38,8 +38,15 @@ namespace BellmanFord.Model
             {
                 foreach(var entry in table)
                 {
+                    if (link.Target() == this)
+                    {
 
-                    link.Target().CheckCost(this, entry.Value.Target(), entry.Value.Cost());
+                        link.Source().CheckCost(this, entry.Value.Target(), entry.Value.Cost());
+                    }
+                    else
+                    {
+                        link.Target().CheckCost(this, entry.Value.Target(), entry.Value.Cost());
+                    }
                 }
             }
         }
@@ -52,7 +59,16 @@ namespace BellmanFord.Model
              */
             if (LowerCost(To, AdvertisedCost))
             {
-                Link sourcelink = links.Single(link=>link.Target() == From);
+                Link sourcelink;
+
+                try
+                {
+                    sourcelink = links.Single(link => link.Target() == From);
+                }
+                catch
+                {
+                    sourcelink = links.Single(link => link.Source() == From);
+                }
                 table[To] = new RoutingTableEntry(AdvertisedCost + sourcelink.Cost(), sourcelink);
             }
             

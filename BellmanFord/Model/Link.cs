@@ -27,6 +27,11 @@ namespace BellmanFord.Model
             return target;
         }
 
+        public IRouter Source()
+        {
+            return source;
+        }
+
         public int Cost()
         {
             return cost;

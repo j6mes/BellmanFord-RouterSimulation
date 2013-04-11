@@ -14,17 +14,21 @@ namespace BellmanFord
         {
             IRouter r1 = new Router();
             IRouter r2 = new Router();
-
-            Link r1r2 = new Link(r1, r2, 5);
+            IRouter r3 = new Router();
+            Link r1r2 = new Link(r1, r2, 3);
+            Link r2r3 = new Link(r2, r3, 5);
 
             r1.InitializeAllLinks();
-            r2.InitializeAllLinks(); 
-
+            r2.InitializeAllLinks();
+            r3.InitializeAllLinks(); 
 
             r1.Interate();
             r2.Interate();
+            r3.Interate();
 
-
+            r1.Interate();
+            r2.Interate();
+            r3.Interate();
 
         }
     }
