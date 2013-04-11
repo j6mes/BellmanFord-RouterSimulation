@@ -8,15 +8,23 @@ namespace BellmanFord.Model
 {
     class RoutingTableEntry
     {
-        public Router Target;
-        public int TotalCost;
-        public Link Destination;
+        
+        private int TotalCost;
+        private Link Destination;
 
-        public RoutingTableEntry(Router Target, int TotalCost, Link Destination)
+        public RoutingTableEntry(int TotalCost, Link Destination)
         {
-            this.Target = Target;
+            
             this.TotalCost = TotalCost;
-            this.Destination = Destination;
+
+            
+                this.Destination = Destination;
+            
+        }
+
+        public int Cost()
+        {
+            return TotalCost;
         }
     }
 }

@@ -9,10 +9,10 @@ namespace BellmanFord.Model
     class Link
     {
         private int cost;
-        private Router target;
-        private Router source;
+        private IRouter target;
+        private IRouter source;
 
-        public Link(Router Source, Router Target, int Cost)
+        public Link(IRouter Source, IRouter Target, int Cost)
         {
             this.source = Source;
             this.target = Target;
@@ -20,6 +20,11 @@ namespace BellmanFord.Model
 
             Source.AddLink(this);
             Target.AddLink(this);
+        }
+
+        public IRouter Target()
+        {
+            return target;
         }
     }
 }
