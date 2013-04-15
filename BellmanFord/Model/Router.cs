@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using BellmanFord.View;
+using CuttingEdge;
 
 namespace BellmanFord.Model
 {
@@ -11,12 +13,13 @@ namespace BellmanFord.Model
     {
         private List<Link> links;
         private Dictionary<IRouter, RoutingTableEntry> table;
+        private String name;
 
-
-        public Router()
+        public Router(String Name)
         {
             links = new List<Link>();
             table = new Dictionary<IRouter, RoutingTableEntry>();
+            name = Name;
         }
 
 
@@ -121,6 +124,27 @@ namespace BellmanFord.Model
                 Initialize(link);
             }
 
+        }
+
+        public String Name()
+        {
+            return name;
+        }
+
+
+
+
+        public ReadOnlyDictionary<INamedObject, RoutingTableEntry> RoutingTable()
+        {
+            
+            Dictionary<INamedObject, RoutingTableEntry> newTable = new Dictionary<INamedObject, RoutingTableEntry>();
+
+            foreach (IRouter router in table.Keys)
+            {
+                newTable[router] = table[router];
+            }
+
+            return new ReadOnlyDictionary<INamedObject, RoutingTableEntry>(newTable);
         }
     }
 }

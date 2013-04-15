@@ -12,9 +12,9 @@ namespace BellmanFord
     {
         static void Main(string[] args)
         {
-            IRouter r1 = new Router();
-            IRouter r2 = new Router();
-            IRouter r3 = new Router();
+            IRouter r1 = new Router("r1");
+            IRouter r2 = new Router("r2");
+            IRouter r3 = new Router("r3");
             Link r1r2 = new Link(r1, r2, 3);
             Link r2r3 = new Link(r2, r3, 5);
 
