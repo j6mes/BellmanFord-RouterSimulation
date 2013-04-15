@@ -19,7 +19,21 @@ namespace BellmanFord.Model
             this.cost = Cost;
 
             Source.AddLink(this);
-            Target.AddLink(this);
+            Target.AddLink(this.Reverse());
+        }
+
+        public Link(IRouter Source, IRouter Target, int Cost, bool DontAdd)
+        {
+            this.source = Source;
+            this.target = Target;
+            this.cost = Cost;
+
+   
+        }
+
+        public Link Reverse()
+        {
+            return new Link(target, source, cost,true);
         }
 
         public IRouter Target()

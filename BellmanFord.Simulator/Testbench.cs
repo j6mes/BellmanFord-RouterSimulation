@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BellmanFord.Controller;
 using BellmanFord.View;
+using System.Threading;
 
 namespace BellmanFord.Simulator
 {
@@ -13,6 +14,11 @@ namespace BellmanFord.Simulator
         List<IRouterStatus> Routers;
         List<IIteratable> IterableRouters;
 
+        public Testbench()
+        {
+            Routers = new List<IRouterStatus>();
+            IterableRouters = new List<IIteratable>();
+        }
         public void AddRouter(IRouterStatus RouterName, IIteratable Iterator)
         {
             Routers.Add(RouterName);
@@ -25,6 +31,25 @@ namespace BellmanFord.Simulator
             {
                 router.Interate();
             }
+
+
+            foreach (IRouterStatus router in Routers)
+            {
+                Print(router);
+            }
+            
+        }
+
+        public void Print(IRouterStatus Router)
+        {
+            Console.WriteLine("Router " + Router.Name());
+            foreach (var entry in Router.RoutingTable().Keys)
+            {
+                Console.WriteLine(entry.Name() + " - " + Router.RoutingTable()[entry].Cost() +  ","+ Router.RoutingTable()[entry].Target().Name());
+                      
+            }
+            Console.WriteLine("");
+            
         }
     }
 }

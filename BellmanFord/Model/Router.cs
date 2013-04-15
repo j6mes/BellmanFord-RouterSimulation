@@ -26,6 +26,7 @@ namespace BellmanFord.Model
         public void AddLink(Link Link)
         {
             links.Add(Link);
+           
         }
 
         
@@ -39,17 +40,12 @@ namespace BellmanFord.Model
         {
             foreach (var link in links)
             {
+
                 foreach(var entry in table)
                 {
-                    if (link.Target() == this)
-                    {
-
-                        link.Source().CheckCost(this, entry.Value.Target(), entry.Value.Cost());
-                    }
-                    else
-                    {
-                        link.Target().CheckCost(this, entry.Value.Target(), entry.Value.Cost());
-                    }
+                    
+                    link.Target().CheckCost(this, entry.Value.Target(), entry.Value.Cost());
+                    
                 }
             }
         }
@@ -60,18 +56,23 @@ namespace BellmanFord.Model
             /*
              * Todo: check null arguments
              */
-            if (LowerCost(To, AdvertisedCost))
+            if (To == this)
             {
-                Link sourcelink;
+                return;
 
-                try
-                {
-                    sourcelink = links.Single(link => link.Target() == From);
-                }
-                catch
-                {
-                    sourcelink = links.Single(link => link.Source() == From);
-                }
+            }
+
+            Link sourcelink;
+            int cost= AdvertisedCost;
+            sourcelink = links.Single(link => link.Target() == From);
+
+           
+            cost = AdvertisedCost + sourcelink.Cost();
+            
+
+            if (LowerCost(To, cost))
+            {
+                
                 table[To] = new RoutingTableEntry(AdvertisedCost + sourcelink.Cost(), sourcelink);
             }
             
