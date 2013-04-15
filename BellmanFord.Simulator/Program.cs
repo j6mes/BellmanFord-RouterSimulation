@@ -50,7 +50,7 @@ namespace BellmanFord.Simulator
                 Console.Clear();
 
 
-                Console.WriteLine("Bellman-Ford Spanning Tree Simulation\nJames Thorne. University of York 2013\nhttp://james.thorne.jp\n\n");
+                Console.WriteLine("Bellman-Ford Spanning Tree Solver\nJames Thorne. University of York 2013\nhttp://james.thorne.jp\n\n");
                     
 
                 app.Interate();
