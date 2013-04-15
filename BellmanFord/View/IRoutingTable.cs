@@ -6,6 +6,6 @@ namespace BellmanFord.View
 {
     public interface IRoutingTable
     {
-        ReadOnlyDictionary<INamedObject, RoutingTableEntry> RoutingTable();
+        ReadOnlyDictionary<IRouterStatus, RoutingTableEntry> RoutingTable();
     }
 }

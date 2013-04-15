@@ -134,17 +134,17 @@ namespace BellmanFord.Model
 
 
 
-        public ReadOnlyDictionary<INamedObject, RoutingTableEntry> RoutingTable()
+        public ReadOnlyDictionary<IRouterStatus, RoutingTableEntry> RoutingTable()
         {
-            
-            Dictionary<INamedObject, RoutingTableEntry> newTable = new Dictionary<INamedObject, RoutingTableEntry>();
+
+            Dictionary<IRouterStatus, RoutingTableEntry> newTable = new Dictionary<IRouterStatus, RoutingTableEntry>();
 
             foreach (IRouter router in table.Keys)
             {
                 newTable[router] = table[router];
             }
 
-            return new ReadOnlyDictionary<INamedObject, RoutingTableEntry>(newTable);
+            return new ReadOnlyDictionary<IRouterStatus, RoutingTableEntry>(newTable);
         }
     }
 }

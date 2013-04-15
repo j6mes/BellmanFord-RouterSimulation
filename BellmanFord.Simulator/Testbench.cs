@@ -10,12 +10,13 @@ namespace BellmanFord.Simulator
 {
     class Testbench : IIteratable
     {
-        List<INamedObject> RouterNames;
+        List<IRouterStatus> Routers;
         List<IIteratable> IterableRouters;
 
-        public void AddRouter(INamedObject RouterName, IIteratable Iterator)
+        public void AddRouter(IRouterStatus RouterName, IIteratable Iterator)
         {
-            RouterNames.Add(RouterName);
+            Routers.Add(RouterName);
+            IterableRouters.Add(Iterator);
         }
 
         public void Interate()

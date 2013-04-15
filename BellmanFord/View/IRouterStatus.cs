@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BellmanFord.View
 {
-    public interface INamedObject
+    public interface IRouterStatus : IRoutingTable
     {
         String Name();
     }

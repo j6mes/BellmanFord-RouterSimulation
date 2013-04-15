@@ -7,7 +7,7 @@ using BellmanFord.View;
 
 namespace BellmanFord.Model
 {
-    public interface IRouter : INamedObject, IIteratable, IRoutingTable
+    public interface IRouter : IRouterStatus, IIteratable
     {
         void CheckCost(IRouter From, IRouter To, int Cost);
         void AddLink(Link Link);
