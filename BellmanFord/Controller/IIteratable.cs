@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BellmanFord.Controller
 {
-    interface IIteratable
+    public interface IIteratable
     {
         void Interate();
     }

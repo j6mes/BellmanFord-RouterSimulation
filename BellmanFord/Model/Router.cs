@@ -9,7 +9,7 @@ using CuttingEdge;
 
 namespace BellmanFord.Model
 {
-    class Router : IRouter
+    public class Router : IRouter
     {
         private List<Link> links;
         private Dictionary<IRouter, RoutingTableEntry> table;

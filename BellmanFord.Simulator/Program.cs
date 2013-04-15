@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BellmanFord.Model;
 
-
-namespace BellmanFord
+namespace BellmanFord.Simulator
 {
     class Program
     {
@@ -20,7 +18,7 @@ namespace BellmanFord
 
             r1.InitializeAllLinks();
             r2.InitializeAllLinks();
-            r3.InitializeAllLinks(); 
+            r3.InitializeAllLinks();
 
             r1.Interate();
             r2.Interate();

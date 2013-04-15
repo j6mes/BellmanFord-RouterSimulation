@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BellmanFord.Model
 {
-    class Link
+    public class Link
     {
         private int cost;
         private IRouter target;

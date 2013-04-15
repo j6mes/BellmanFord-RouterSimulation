@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BellmanFord", "BellmanFord\BellmanFord.csproj", "{7B0F84B8-33C0-4762-88B1-B0C3E8A9D709}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BellmanFord.Simulator", "BellmanFord.Simulator\BellmanFord.Simulator.csproj", "{0D5E1934-0CCD-48A1-9272-2DB983DC5FB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{7B0F84B8-33C0-4762-88B1-B0C3E8A9D709}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B0F84B8-33C0-4762-88B1-B0C3E8A9D709}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B0F84B8-33C0-4762-88B1-B0C3E8A9D709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5E1934-0CCD-48A1-9272-2DB983DC5FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5E1934-0CCD-48A1-9272-2DB983DC5FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5E1934-0CCD-48A1-9272-2DB983DC5FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5E1934-0CCD-48A1-9272-2DB983DC5FB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

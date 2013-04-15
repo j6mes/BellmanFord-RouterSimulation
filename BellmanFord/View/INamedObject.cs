@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BellmanFord.View
 {
-    interface INamedObject
+    public interface INamedObject
     {
         String Name();
     }

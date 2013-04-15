@@ -4,7 +4,7 @@ using CuttingEdge;
 
 namespace BellmanFord.View
 {
-    interface IRoutingTable
+    public interface IRoutingTable
     {
         ReadOnlyDictionary<INamedObject, RoutingTableEntry> RoutingTable();
     }

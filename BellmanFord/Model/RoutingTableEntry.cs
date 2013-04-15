@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BellmanFord.Model
 {
-    class RoutingTableEntry
+    public class RoutingTableEntry
     {
         
         private int TotalCost;
