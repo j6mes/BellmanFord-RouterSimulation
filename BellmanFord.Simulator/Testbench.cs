@@ -27,13 +27,13 @@ namespace BellmanFord.Simulator
    
         }
 
-        public void Interate()
+        public void Iterate()
         {
             RouterThreads = new List<Thread>();
 
             foreach (IIteratable router in IterableRouters)
             {
-                RouterThreads.Add(new Thread(router.Interate));
+                RouterThreads.Add(new Thread(router.Iterate));
      
             }
 

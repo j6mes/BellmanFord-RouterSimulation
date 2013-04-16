@@ -53,7 +53,7 @@ namespace BellmanFord.Simulator
                 Console.WriteLine("Bellman-Ford Spanning Tree Solver\nJames Thorne. University of York 2013\nhttp://james.thorne.jp\nPress [enter] to signal routers to broadcast\n");
                     
 
-                app.Interate();
+                app.Iterate();
                 Console.ReadLine();
             }
            

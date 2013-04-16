@@ -8,6 +8,6 @@ namespace BellmanFord.Controller
 {
     public interface IIteratable
     {
-        void Interate();
+        void Iterate();
     }
 }

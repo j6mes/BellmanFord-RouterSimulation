@@ -46,7 +46,7 @@ namespace BellmanFord.Model
         /// <summary>
         /// Broadcast routing table to all neighbours
         /// </summary>
-        public void Interate()
+        public void Iterate()
         {
             foreach (var link in links)
             {
