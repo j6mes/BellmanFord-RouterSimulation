@@ -13,23 +13,34 @@ namespace BellmanFord.Simulator
     {
         List<IRouterStatus> Routers;
         List<IIteratable> IterableRouters;
-
+        List<Thread> RouterThreads;
         public Testbench()
         {
             Routers = new List<IRouterStatus>();
             IterableRouters = new List<IIteratable>();
+            
         }
-        public void AddRouter(IRouterStatus RouterName, IIteratable Iterator)
+        public void AddRouter(IRouterStatus RouterStatus, IIteratable Iterator)
         {
-            Routers.Add(RouterName);
+            Routers.Add(RouterStatus);
             IterableRouters.Add(Iterator);
+   
         }
 
         public void Interate()
         {
+            RouterThreads = new List<Thread>();
+
             foreach (IIteratable router in IterableRouters)
             {
-                router.Interate();
+                RouterThreads.Add(new Thread(router.Interate));
+     
+            }
+
+            foreach (Thread router in RouterThreads)
+            {
+                router.Start();
+
             }
 
 
@@ -49,7 +60,7 @@ namespace BellmanFord.Simulator
                       
             }
             Console.WriteLine("");
-            
+            Console.Beep();
         }
     }
 }

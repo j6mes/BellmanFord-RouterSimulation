@@ -34,7 +34,7 @@ namespace BellmanFord.Simulator
             links[5] = new Link(routers[2], routers[5], 2);
             links[6] = new Link(routers[3], routers[5], 3);
             links[7] = new Link(routers[4], routers[6], 1);
-            links[8] = new Link(routers[5], routers[6], 1);
+            links[8] = new Link(routers[5], routers[6], 2);
 
 
             foreach (Router router in routers)

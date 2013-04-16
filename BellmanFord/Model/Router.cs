@@ -6,19 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using BellmanFord.View;
 using CuttingEdge;
+using System.Collections.Concurrent;
 
 namespace BellmanFord.Model
 {
     public class Router : IRouter
     {
         private List<Link> links;
-        private Dictionary<IRouter, RoutingTableEntry> table;
+        private ConcurrentDictionary<IRouter, RoutingTableEntry> table;
         private String name;
 
         public Router(String Name)
         {
             links = new List<Link>();
-            table = new Dictionary<IRouter, RoutingTableEntry>();
+            table = new ConcurrentDictionary<IRouter, RoutingTableEntry>();
             name = Name;
         }
 
@@ -44,7 +45,7 @@ namespace BellmanFord.Model
                 foreach(var entry in table)
                 {
                     
-                    link.Target().CheckCost(this, entry.Value.Target(), entry.Value.Cost());
+                    link.Target().CheckCost(this, entry.Key, entry.Value.Cost());
                     
                 }
             }
