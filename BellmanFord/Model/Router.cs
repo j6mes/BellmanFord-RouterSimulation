@@ -16,6 +16,10 @@ namespace BellmanFord.Model
         private ConcurrentDictionary<IRouter, RoutingTableEntry> table;
         private String name;
 
+        /// <summary>
+        /// Creates a new router with a name
+        /// </summary>
+        /// <param name="Name">Router's friendly name</param>
         public Router(String Name)
         {
             links = new List<Link>();
@@ -23,7 +27,10 @@ namespace BellmanFord.Model
             name = Name;
         }
 
-
+        /// <summary>
+        /// Registers a link added to the router
+        /// </summary>
+        /// <param name="Link">Link to be registered</param>
         public void AddLink(Link Link)
         {
             links.Add(Link);
@@ -36,12 +43,13 @@ namespace BellmanFord.Model
             return links;
         }
 
-
+        /// <summary>
+        /// Broadcast routing table to all neighbours
+        /// </summary>
         public void Interate()
         {
             foreach (var link in links)
             {
-
                 foreach(var entry in table)
                 {
                     
@@ -51,37 +59,69 @@ namespace BellmanFord.Model
             }
         }
 
+        /// <summary>
+        /// Receive broadcast message
+        /// Synchronized 
+        /// </summary>
+        /// <param name="From">The sending router. The nexthop</param>
+        /// <param name="To">The destination router</param>
+        /// <param name="AdvertisedCost">Advertised cost from sending router</param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void CheckCost(IRouter From, IRouter To, int AdvertisedCost)
         {
-            /*
-             * Todo: check null arguments
-             */
-            if (To == this)
+            if (From == null || To == null)
             {
-                return;
-
+                throw new ArgumentNullException("Null router given");
             }
 
+
+            if (To == this)
+            {
+                //Do Nothing
+                return;
+            }
+
+            /*
+             * Get the link that the message is from.
+             * Check that we actually link to it
+             */
             Link sourcelink;
             int cost= AdvertisedCost;
-            sourcelink = links.Single(link => link.Target() == From);
 
+            sourcelink = links.SingleOrDefault(link => link.Target() == From);
+            if (sourcelink == null)
+            {
+                throw new ArgumentException("This rouer doesn't link to sending router");
+            }
            
-            cost = AdvertisedCost + sourcelink.Cost();
+
+            /*
+             * Add local edge cost advertised cost
+             */
+            cost += sourcelink.Cost();
             
 
+            /*
+             * If this costs less, add it to the routing table
+             */
             if (LowerCost(To, cost))
-            {
-                
+            { 
                 table[To] = new RoutingTableEntry(AdvertisedCost + sourcelink.Cost(), sourcelink);
             }
             
         }
 
-
+        /// <summary>
+        /// Checks if a route cost is minimal
+        /// </summary>
+        /// <param name="Target">Target router</param>
+        /// <param name="AdvertisedCost">Current cost</param>
+        /// <returns>True if the route cost is minimal</returns>
         private Boolean LowerCost(IRouter Target, int AdvertisedCost)
         {
+            /*
+             * Check route exists in routing table, else add it and return true
+             */
             if (HasEntry(Target))
             {
                 if (table[Target].Cost() > AdvertisedCost)
@@ -97,16 +137,24 @@ namespace BellmanFord.Model
             return true;
         }
 
-
+        /// <summary>
+        /// Initialize an entry in the routing table from a router
+        /// </summary>
+        /// <param name="Target">Router to add with null next hop</param>
         private void Initialize(IRouter Target)
         {
             table[Target] = new RoutingTableEntry(999, null);
         }
 
+        /// <summary>
+        /// Initialize an entry in the routing table from a link
+        /// </summary>
+        /// <param name="Dest">Target = link.target</param>
         private void Initialize(Link Dest)
         {
             table[Dest.Target()] = new RoutingTableEntry(Dest.Cost(), Dest);
         }
+
 
         private Boolean HasEntry(IRouter Target)
         {
