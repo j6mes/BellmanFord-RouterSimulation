@@ -50,9 +50,9 @@ namespace BellmanFord.Model
         {
             foreach (var link in links)
             {
-                foreach(var entry in table)
+                
+                foreach(var entry in table.Where(e=>e.Value.Target()!=link.Target()))
                 {
-                    
                     link.Target().CheckCost(this, entry.Key, entry.Value.Cost());
                     
                 }
@@ -88,7 +88,7 @@ namespace BellmanFord.Model
             Link sourcelink;
             int cost= AdvertisedCost;
 
-            sourcelink = links.SingleOrDefault(link => link.Target() == From);
+            sourcelink = links.FirstOrDefault(link => link.Target() == From);
             if (sourcelink == null)
             {
                 throw new ArgumentException("This rouer doesn't link to sending router");
