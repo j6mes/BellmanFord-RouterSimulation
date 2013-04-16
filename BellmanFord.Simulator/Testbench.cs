@@ -60,7 +60,7 @@ namespace BellmanFord.Simulator
                       
             }
             Console.WriteLine("");
-            Console.Beep();
+           
         }
     }
 }
